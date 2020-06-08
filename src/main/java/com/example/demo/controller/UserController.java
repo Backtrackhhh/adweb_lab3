@@ -43,6 +43,11 @@ public class UserController {
         SqlSession sqlSession = SqlSessionLoader.getSqlSession();
         User user = sqlSession.selectOne("example.UserMapper.findUserByUsername",
                 request.getUsername());
+        if(user == null){
+            sqlSession.close();
+            return new ResponseBean(0, "Login failed,user is not existed", request); // use your generated token here.
+
+        }
         if (user.getPassword().equals(request.getPassword())) {
             session.setAttribute("username",request.getUsername());
             session.setAttribute("password",request.getPassword());
