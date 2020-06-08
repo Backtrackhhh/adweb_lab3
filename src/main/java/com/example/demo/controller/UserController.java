@@ -37,7 +37,7 @@ public class UserController {
 
         }
     }
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseBean login(@RequestBody UserLoginRequest request,HttpSession session) throws
             IOException {
         SqlSession sqlSession = SqlSessionLoader.getSqlSession();
