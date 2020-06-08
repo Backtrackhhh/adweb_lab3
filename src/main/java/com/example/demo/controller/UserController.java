@@ -26,14 +26,14 @@ public class UserController {
                 request.getUsername());
         if (user != null) {
             sqlSession.close();
-            return new ResponseBean(1, "The username is already used", "a");
+            return new ResponseBean(1, "The username is already used", request);
         } else {
             sqlSession.insert("example.UserMapper.addUser", new
                     User(request.getUsername(), request.getPassword(), request.getEmail(),
                     request.getPhone()));
             sqlSession.commit();
             sqlSession.close();
-            return new ResponseBean(0, "abc", "a"); // use your generated token here.
+            return new ResponseBean(1, "register successfully", request); // use your generated token here.
 
         }
     }
